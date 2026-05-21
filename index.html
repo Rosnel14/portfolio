@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rosnel Leyva — Project Portfolio</title>
+    <meta name="description" content="A handmade, playful engineering portfolio with interactive 3D CAD project viewers." />
+    <link rel="stylesheet" href="style.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.164.1/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.164.1/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="logo patch" href="#top" aria-label="Home">RL</a>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#viewer">3D Viewer</a>
+        <a href="#about">About</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero stitched-panel">
+        <div class="hero-copy">
+          <p class="eyebrow">Electrical Engineering • CAD • PCB Design • Prototypes</p>
+          <h1>Handmade engineering projects with a little bit of cardboard, copper, and chaos.</h1>
+          <p class="hero-text">
+            Welcome to my project scrapbook. This site is built to make adding new work easy:
+            edit one project list, drop in a model file, and the card + 3D viewer update automatically.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">See projects</a>
+            <a class="button secondary" href="#viewer">Open CAD viewer</a>
+          </div>
+        </div>
+        <div class="hero-object" aria-label="Decorative patchwork planet">
+          <div class="planet">
+            <span class="pin pin-a"></span>
+            <span class="pin pin-b"></span>
+            <span class="pin pin-c"></span>
+          </div>
+          <div class="tag-card">drag • inspect • explode</div>
+        </div>
+      </section>
+
+      <section class="section-intro" id="projects">
+        <p class="eyebrow">Project shelf</p>
+        <h2>Pick a build to inspect.</h2>
+        <p>
+          Add new projects by editing the <code>projects</code> array in <code>app.js</code>. Each card can link to a STEP,
+          STL, OBJ, or GLB model stored in <code>assets/models/</code>.
+        </p>
+      </section>
+
+      <section class="project-grid" id="projectGrid" aria-live="polite"></section>
+
+      <section class="viewer-shell stitched-panel" id="viewer">
+        <div class="viewer-copy">
+          <p class="eyebrow">Interactive CAD window</p>
+          <h2 id="viewerTitle">Select a project</h2>
+          <p id="viewerSummary">Choose a project card to load its 3D model. You can rotate, pan, zoom, and toggle exploded view.</p>
+          <div class="viewer-controls">
+            <button class="button primary" id="explodeBtn" type="button">Explode view</button>
+            <button class="button secondary" id="resetBtn" type="button">Reset camera</button>
+          </div>
+          <ul class="spec-list" id="specList"></ul>
+          <p class="viewer-note" id="viewerNote"></p>
+        </div>
+        <div class="viewer-stage">
+          <div id="cadViewer" class="cad-viewer" role="img" aria-label="Interactive 3D CAD model viewer"></div>
+          <div class="viewer-badge">Three.js CAD Viewer</div>
+        </div>
+      </section>
+
+      <section class="about" id="about">
+        <div class="scrap-card">
+          <p class="eyebrow">About this site</p>
+          <h2>Built like a scrapbook, maintained like a parts bin.</h2>
+          <p>
+            The visual language is inspired by handmade craft, stitched fabric, cardboard, buttons, and playful invention.
+            It intentionally avoids using any direct videogame assets, logos, or copyrighted art.
+          </p>
+        </div>
+        <div class="scrap-card tape-card">
+          <h3>Easy update flow</h3>
+          <ol>
+            <li>Put your CAD model in <code>assets/models/</code>.</li>
+            <li>Add one object to <code>projects</code> in <code>app.js</code>.</li>
+            <li>Push to GitHub Pages.</li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Made with fabric scraps, copper traces, and static hosting.</p>
+      <a href="#top">Back to top ↑</a>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

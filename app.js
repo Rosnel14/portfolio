@@ -29,7 +29,7 @@ const projects = [
     model: "assets/models/BMS_2026_BOTTOM_Layout.step.glb",
     modelType: "glb",
     fallbackColor: 0xf8c557,
-    ProjectFiles: "https://www.dropbox.com/scl/fo/0dc6li80u3x4goez6ct8h/APvaKczAxmkim_tdl11qZzo?rlkey=sn6b15tolx7ej82g453ghn5bq&st=ausc9t8l&dl=0"
+    filesUrl: "https://www.dropbox.com/scl/fo/0dc6li80u3x4goez6ct8h/APvaKczAxmkim_tdl11qZzo?rlkey=sn6b15tolx7ej82g453ghn5bq&st=ausc9t8l&dl=1"
   }
 ];
 
@@ -41,6 +41,7 @@ const specList = document.querySelector("#specList");
 const viewerNote = document.querySelector("#viewerNote");
 const explodeBtn = document.querySelector("#explodeBtn");
 const resetBtn = document.querySelector("#resetBtn");
+const projectFilesBtn = document.getElementById("projectFilesBtn");
 
 let scene, camera, renderer, controls, activeModel;
 let exploded = false;
@@ -50,6 +51,14 @@ let occtPromise;
 initProjects();
 initViewer();
 loadProject(projects[0]);
+
+//for loading project files urls
+if (project.filesUrl) {
+  projectFilesBtn.href = project.filesUrl;
+  projectFilesBtn.hidden = false;
+} else {
+  projectFilesBtn.hidden = true;
+}
 
 function initProjects() {
   grid.innerHTML = projects.map((project, index) => `
@@ -141,7 +150,7 @@ async function loadProject(project) {
     scene.add(activeModel);
     prepareExplodeData(activeModel);
     frameObject(activeModel);
-    viewerNote.textContent = `Loaded ${project.model}. Drag the model to rotate it, scroll to zoom, and use exploded view to separate parts.`;
+    viewerNote.textContent = ` Drag the model to rotate it, scroll to zoom, and use exploded view to separate parts.`;
   } catch (error) {
     console.warn(error);
     activeModel = makeFallbackModel(project.fallbackColor);

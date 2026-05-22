@@ -62,12 +62,22 @@
 
       <section class="viewer-shell stitched-panel" id="viewer">
         <div class="viewer-copy">
-          <p class="eyebrow">Interactive CAD window</p>
+          <p class="eyebrow">Project Snapshot</p>
           <h2 id="viewerTitle">Select a project</h2>
           <p id="viewerSummary">Choose a project card to load its 3D model. You can rotate, pan, zoom, and toggle exploded view.</p>
           <div class="viewer-controls">
             <button class="button primary" id="explodeBtn" type="button">Explode view</button>
             <button class="button secondary" id="resetBtn" type="button">Reset camera</button>
+	    <a
+  class="button secondary"
+  id="projectFilesBtn"
+  href="#"
+  target="_blank"
+  rel="noopener noreferrer"
+  hidden
+>
+  Download Project Files
+</a>
           </div>
           <ul class="spec-list" id="specList"></ul>
           <p class="viewer-note" id="viewerNote"></p>

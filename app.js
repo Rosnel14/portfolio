@@ -26,7 +26,7 @@ const projects = [
     summary: "Full circuit design for FSAE battery management system. Monitors voltages and temperature per-cell of a 600V, high-performance battery pack. ",
     tags: ["Altium", "EV", "Circuit Design"],
     specs: ["+/- 5mV Accuracy", "Robust Electrical/Thermal Protection", "Passive 300mA Balancing"],
-    model: "BMS_2026_BOTTOM_Layout.step.glb",
+    model: "assets/modlels/BMS_2026_BOTTOM_Layout.step.glb",
     modelType: "glb",
     fallbackColor: 0xf8c557
   }

@@ -21,12 +21,12 @@ const OCCT_SCRIPT_URL = "https://cdn.jsdelivr.net/npm/occt-import-js@0.0.23/dist
 
 const projects = [
   {
-    title: "EV Wiring Harness Routing",
-    role: "PCB + harness integration",
-    summary: "Packaging study for a compact wiring harness path around constrained EV chassis geometry.",
-    tags: ["CAD", "EV", "Harness", "Packaging"],
-    specs: ["22 AWG signals", "serviceable routing", "strain relief"],
-    model: "assets/models/sample-placeholder.glb",
+    title: "FSAE EV26 Battery Management System",
+    role: "Circuit/PCB Design",
+    summary: "Full circuit design for FSAE battery management system. Monitors voltages and temperature per-cell of a 600V, high-performance battery pack. ",
+    tags: ["Altium", "EV", "Circuit Design"],
+    specs: ["+/- 5mV Accuracy", "Robust Electrical/Thermal Protection", "Passive 300mA Balancing"],
+    model: "BMS_2026_BOTTOM_Layout.step",
     modelType: "glb",
     fallbackColor: 0xf8c557
   },

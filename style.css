@@ -51,6 +51,17 @@ footer { position: relative; z-index: 1; }
   gap: 16px;
 }
 
+.scrap-card a {
+  color: #7a3cff;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+}
+
+.scrap-card a:hover {
+  color: #d9480f;
+}
+
 .logo {
   width: 58px;
   height: 58px;

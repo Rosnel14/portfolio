@@ -52,14 +52,6 @@ initProjects();
 initViewer();
 loadProject(projects[0]);
 
-//for loading project files urls
-if (project.filesUrl) {
-  projectFilesBtn.href = project.filesUrl;
-  projectFilesBtn.hidden = false;
-} else {
-  projectFilesBtn.hidden = true;
-}
-
 function initProjects() {
   grid.innerHTML = projects.map((project, index) => `
     <article class="project-card" tabindex="0" data-index="${index}">
@@ -144,6 +136,12 @@ async function loadProject(project) {
   exploded = false;
   explodeBtn.textContent = "Explode view";
   clearActiveModel();
+  if (project.filesUrl) {
+     projectFilesBtn.href = project.filesUrl;
+     projectFilesBtn.hidden = false;
+  } else {
+     projectFilesBtn.hidden = true;
+  }
 
   try {
     activeModel = await loadModel(project);

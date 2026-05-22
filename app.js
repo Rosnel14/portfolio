@@ -24,12 +24,23 @@ const projects = [
     title: "FSAE EV26 Battery Management System",
     role: "Circuit/PCB Design",
     summary: "Full circuit design for FSAE battery management system. Monitors voltages and temperature per-cell of a 600V, high-performance battery pack. ",
-    tags: ["Altium", "EV", "Circuit Design"],
+    tags: ["Altium", "FSAE", "Circuit Design"],
     specs: ["+/- 5mV Accuracy", "Robust Electrical/Thermal Protection", "Passive 300mA Balancing"],
     model: "assets/models/BMS_2026_BOTTOM_Layout.step.glb",
     modelType: "glb",
     fallbackColor: 0xf8c557,
     filesUrl: "https://www.dropbox.com/scl/fo/0dc6li80u3x4goez6ct8h/APvaKczAxmkim_tdl11qZzo?rlkey=sn6b15tolx7ej82g453ghn5bq&st=ausc9t8l&dl=1"
+  },
+  { 
+    title: "FSAE EV26 Shutdown Circuit",
+    role: "Circuit/PCB Design",
+    summary: "Full circuit design, simulation, and HIL testing of FSAE shutdown-circuit. Monitors status of insulation monitoring device, BMS, and brakes-systemplausability, and in the event of a fault, disconnects high-voltage battery power to the vehicle.",
+    tags: ['Altium, FSAE, Circuit Design'],
+    specs: ['Adjustable sensor bounds', '<2ms fault response time', 'AEC qualified performance'],
+    model:"assets/models/SDC_EV26.step.glb",
+    modelType: "glb",
+    fallbackColor: 0xf8c557,
+    filesUrl: "https://www.dropbox.com/scl/fo/c94r3rwnm3b018qro6p1q/AOaZ3fD6zzSAB75mwel-grA?rlkey=pnudgpir31cxjfiscrclfzz8e&st=h1f2zwsi&dl=1"
   }
 ];
 

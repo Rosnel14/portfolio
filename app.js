@@ -29,26 +29,6 @@ const projects = [
     model: "BMS_2026_BOTTOM_Layout.step.glb",
     modelType: "glb",
     fallbackColor: 0xf8c557
-  },
-  {
-    title: "Analog Front-End Enclosure",
-    role: "Mechanical + electrical co-design",
-    summary: "Small enclosure concept for protecting an analog board while keeping connectors accessible.",
-    tags: ["Analog", "Enclosure", "PCB", "Prototype"],
-    specs: ["panel mount", "compact", "3D printed"],
-    model: "assets/models/sample-placeholder.stl",
-    modelType: "stl",
-    fallbackColor: 0x4d7893
-  },
-  {
-    title: "Custom CAD Assembly",
-    role: "Drop in your own STEP file",
-    summary: "Replace this entry with one of your STEP files to show a browser-rendered CAD assembly.",
-    tags: ["STEP", "Assembly", "Exploded View"],
-    specs: ["drag to rotate", "scroll to zoom", "explode toggle"],
-    model: "assets/models/your-model.step",
-    modelType: "step",
-    fallbackColor: 0xb75445
   }
 ];
 

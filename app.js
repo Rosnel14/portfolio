@@ -17,6 +17,89 @@ import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
   Then set OCCT_SCRIPT_URL = "vendor/occt-import-js.js" below.
 */
 
+//states for project media rotation
+let activeProject = null; 
+let activeMediaIndex = 0; 
+
+function showProjectMedia(project, index = 0) {
+  activeProject = project;
+  activeMediaIndex = index;
+
+  const media = project.media?.[activeMediaIndex];
+
+  const projectImageView = document.getElementById("projectImageView");
+  const viewerNote = document.getElementById("viewerNote");
+  const explodeBtn = document.getElementById("explodeBtn");
+  const resetBtn = document.getElementById("resetBtn");
+  const prevMediaBtn = document.getElementById("prevMediaBtn");
+  const nextMediaBtn = document.getElementById("nextMediaBtn");
+  const projectFilesBtn = document.getElementById("projectFilesBtn");
+
+  // Change this selector to match your actual 3D viewer container ID/class.
+  const viewerCanvas = document.getElementById("viewerCanvas");
+  const viewerContainer = document.getElementById("viewerContainer");
+
+  if (!media) return;
+
+  if (viewerNote) {
+    viewerNote.textContent = `${activeMediaIndex + 1} / ${project.media.length} — ${media.caption || ""}`;
+  }
+
+  if (prevMediaBtn) {
+    prevMediaBtn.disabled = activeMediaIndex === 0;
+  }
+
+  if (nextMediaBtn) {
+    nextMediaBtn.disabled = activeMediaIndex === project.media.length - 1;
+  }
+
+  if (projectFilesBtn) {
+    if (project.filesUrl) {
+      projectFilesBtn.href = project.filesUrl;
+      projectFilesBtn.hidden = false;
+    } else {
+      projectFilesBtn.hidden = true;
+    }
+  }
+
+  if (media.type === "model") {
+    if (projectImageView) {
+      projectImageView.hidden = true;
+      projectImageView.removeAttribute("src");
+    }
+
+    if (viewerContainer) {
+      viewerContainer.hidden = false;
+    } else if (viewerCanvas) {
+      viewerCanvas.hidden = false;
+    }
+
+    if (explodeBtn) explodeBtn.hidden = false;
+    if (resetBtn) resetBtn.hidden = false;
+
+    // Use your existing model-loading function here.
+    // Rename this line to match whatever your current function is called.
+    loadModel(media.src);
+  }
+
+  if (media.type === "image") {
+    if (viewerContainer) {
+      viewerContainer.hidden = true;
+    } else if (viewerCanvas) {
+      viewerCanvas.hidden = true;
+    }
+
+    if (projectImageView) {
+      projectImageView.src = media.src;
+      projectImageView.alt = media.caption || `${project.title} image`;
+      projectImageView.hidden = false;
+    }
+
+    if (explodeBtn) explodeBtn.hidden = true;
+    if (resetBtn) resetBtn.hidden = true;
+  }
+}
+
 const OCCT_SCRIPT_URL = "https://cdn.jsdelivr.net/npm/occt-import-js@0.0.23/dist/occt-import-js.js";
 
 const projects = [
@@ -26,16 +109,26 @@ const projects = [
     summary: "Full circuit design for FSAE battery management system. Monitors voltages and temperature per-cell of a 600V, high-performance battery pack. ",
     tags: ["Altium", "FSAE", "Circuit Design"],
     specs: ["+/- 5mV Accuracy", "Robust Electrical/Thermal Protection", "Passive 300mA Balancing"],
-    model: "assets/models/BMS_2026_BOTTOM_Layout.step.glb",
-    modelType: "glb",
-    fallbackColor: 0xf8c557,
-    filesUrl: "https://www.dropbox.com/scl/fo/0dc6li80u3x4goez6ct8h/APvaKczAxmkim_tdl11qZzo?rlkey=sn6b15tolx7ej82g453ghn5bq&st=ausc9t8l&dl=1"
+    filesUrl: "https://www.dropbox.com/scl/fo/0dc6li80u3x4goez6ct8h/APvaKczAxmkim_tdl11qZzo?rlkey=sn6b15tolx7ej82g453ghn5bq&st=ausc9t8l&dl=1",
+  
+    media: [
+	    {
+		    type:'model',
+		    src:'assets/models/BMS_2026_BOTTOM_Layout.step.glb',
+		    caption:'Interactive 3D model'
+	    },
+	    {
+		    type: "image",
+		    src: "assets/photos/BMS_still_3.jpg",
+		    caption:"Complete PCBA" 
+	    }
+    ]
   },
   { 
     title: "FSAE EV26 Shutdown Circuit",
     role: "Circuit/PCB Design",
     summary: "Full circuit design, simulation, and HIL testing of FSAE shutdown-circuit. Monitors status of insulation monitoring device, BMS, and brakes-systemplausability, and in the event of a fault, disconnects high-voltage battery power to the vehicle.",
-    tags: ['Altium, FSAE, Circuit Design'],
+   tags: ["Altium", "FSAE", "Circuit Design"],
     specs: ['Adjustable sensor bounds', '<2ms fault response time', 'AEC qualified performance'],
     model:"assets/models/SDC_EV26.step.glb",
     modelType: "glb",
@@ -53,6 +146,20 @@ const viewerNote = document.querySelector("#viewerNote");
 const explodeBtn = document.querySelector("#explodeBtn");
 const resetBtn = document.querySelector("#resetBtn");
 const projectFilesBtn = document.getElementById("projectFilesBtn");
+
+document.getElementById("prevMediaBtn")?.addEventListener("click", () => {
+  if (!activeProject) return;
+
+  const nextIndex = Math.max(0, activeMediaIndex - 1);
+  showProjectMedia(activeProject, nextIndex);
+});
+
+document.getElementById("nextMediaBtn")?.addEventListener("click", () => {
+  if (!activeProject) return;
+
+  const nextIndex = Math.min(activeProject.media.length - 1, activeMediaIndex + 1);
+  showProjectMedia(activeProject, nextIndex);
+});
 
 let scene, camera, renderer, controls, activeModel;
 let exploded = false;
@@ -155,7 +262,7 @@ async function loadProject(project) {
   }
 
   try {
-    activeModel = await loadModel(project);
+    activeModel = await loadModel(project,0);
     scene.add(activeModel);
     prepareExplodeData(activeModel);
     frameObject(activeModel);

@@ -64,6 +64,8 @@
           <div class="viewer-controls">
             <button class="button primary" id="explodeBtn" type="button">Explode view</button>
             <button class="button secondary" id="resetBtn" type="button">Reset camera</button>
+	     <button class="button secondary" id="prevMediaBtn" type="button">← Previous</button>
+  <button class="button secondary" id="nextMediaBtn" type="button">Next →</button>
 	    <a
   class="button secondary"
   id="projectFilesBtn"
@@ -81,6 +83,8 @@
         <div class="viewer-stage">
           <div id="cadViewer" class="cad-viewer" role="img" aria-label="Interactive 3D CAD model viewer"></div>
         </div>
+	<img id="projectImageView" class="project-image-view" alt="Project media preview" hidden />
+<p class="viewer-note" id="viewerNote"></p>
       </section>
 
       <section class="about" id="about">

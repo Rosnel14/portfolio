@@ -110,19 +110,9 @@ const projects = [
     tags: ["Altium", "FSAE", "Circuit Design"],
     specs: ["+/- 5mV Accuracy", "Robust Electrical/Thermal Protection", "Passive 300mA Balancing"],
     filesUrl: "https://www.dropbox.com/scl/fo/0dc6li80u3x4goez6ct8h/APvaKczAxmkim_tdl11qZzo?rlkey=sn6b15tolx7ej82g453ghn5bq&st=ausc9t8l&dl=1",
-  
-    media: [
-	    {
-		    type:'model',
-		    src:'assets/models/BMS_2026_BOTTOM_Layout.step.glb',
-		    caption:'Interactive 3D model'
-	    },
-	    {
-		    type: "image",
-		    src: "assets/photos/BMS_still_3.jpg",
-		    caption:"Complete PCBA" 
-	    }
-    ]
+    model: "assets/models/BMS_2026_BOTTOM_Layout.step.glb",
+    modelType: "glb",
+    fallbackColor: 0xf8c557
   },
   { 
     title: "FSAE EV26 Shutdown Circuit",

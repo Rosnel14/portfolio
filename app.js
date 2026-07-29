@@ -263,7 +263,7 @@ async function loadProject(project) {
     scene.add(activeModel);
     prepareExplodeData(activeModel);
     frameObject(activeModel);
-    viewerNote.textContent = `Could not load ${project.model}. Showing a placeholder. Add your real model to assets/models/ or update the project path in app.js.`;
+    viewerNote.textContent = `Could not load ${project.model}. Showing a placeholder.`;
   }
 }
 
